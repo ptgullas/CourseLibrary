@@ -20,7 +20,7 @@ namespace CourseLibrary.API.Controllers {
         }
 
         [HttpGet()]
-        public IActionResult GetAuthors() {
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors() {
             var authorsFromRepo = _courseLibraryRepository.GetAuthors();
             List<AuthorDto> authors = new List<AuthorDto>();
             foreach (Author author in authorsFromRepo) {
