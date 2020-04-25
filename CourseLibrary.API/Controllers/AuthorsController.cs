@@ -1,4 +1,7 @@
-﻿using CourseLibrary.API.Services;
+﻿using CourseLibrary.API.Entities;
+using CourseLibrary.API.Helpers;
+using CourseLibrary.API.Models;
+using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +22,15 @@ namespace CourseLibrary.API.Controllers {
         [HttpGet()]
         public IActionResult GetAuthors() {
             var authorsFromRepo = _courseLibraryRepository.GetAuthors();
+            List<AuthorDto> authors = new List<AuthorDto>();
+            foreach (Author author in authorsFromRepo) {
+                authors.Add(new AuthorDto() {
+                    Id = author.Id,
+                    Name = $"{author.FirstName} {author.LastName}",
+                    MainCategory = author.MainCategory,
+                    Age = author.DateOfBirth.GetCurrentAge()
+                });
+            }
             return Ok(authorsFromRepo);
         }
 
