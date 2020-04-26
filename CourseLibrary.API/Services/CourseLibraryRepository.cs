@@ -96,7 +96,7 @@ namespace CourseLibrary.API.Services {
         }
 
         public IEnumerable<Author> GetAuthors() {
-            return _context.Authors.ToList<Author>();
+            return _context.Authors.ToList();
         }
 
         public IEnumerable<Author> GetAuthors(string mainCategory) {
