@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CourseLibrary.API.Models;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +22,14 @@ namespace CourseLibrary.API.Controllers {
                 throw new ArgumentNullException(nameof(mapper));
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<CourseDto>> GetCoursesForAuthor(Guid authorId) {
+            if (!_courseLibraryRepository.AuthorExists(authorId)) {
+                return NotFound();
+            }
+            var coursesForAuthorFromRepo = _courseLibraryRepository.GetCourses(authorId);
+            return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesForAuthorFromRepo));
+        }
 
     }
 }
