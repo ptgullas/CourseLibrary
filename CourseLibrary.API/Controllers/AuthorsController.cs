@@ -41,5 +41,14 @@ namespace CourseLibrary.API.Controllers {
             }
             return Ok(_mapper.Map<AuthorDto>(authorFromRepo));
         }
+
+        public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author) {
+            Author authorEntity = _mapper.Map<Author>(author);
+            _courseLibraryRepository.AddAuthor(authorEntity);
+            _courseLibraryRepository.Save();
+            AuthorDto authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
+            return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id}, authorToReturn);
+        }
+
     }
 }
