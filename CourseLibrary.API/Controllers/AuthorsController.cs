@@ -28,12 +28,12 @@ namespace CourseLibrary.API.Controllers {
         [HttpGet()]
         [HttpHead]
         public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
-            AuthorsResourceParameters authorsResourceParameters) {
+            [FromQuery] AuthorsResourceParameters authorsResourceParameters) {
             var authorsFromRepo = _courseLibraryRepository.GetAuthors(authorsResourceParameters);
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
 
-        [HttpGet("{authorId}")]
+        [HttpGet("{authorId}", Name = "GetAuthor")]
         public IActionResult GetAuthor(Guid authorId) {
             var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
             if (authorFromRepo == null) {
@@ -41,6 +41,5 @@ namespace CourseLibrary.API.Controllers {
             }
             return Ok(_mapper.Map<AuthorDto>(authorFromRepo));
         }
-
     }
 }
