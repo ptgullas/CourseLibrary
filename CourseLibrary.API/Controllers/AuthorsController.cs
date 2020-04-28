@@ -42,6 +42,7 @@ namespace CourseLibrary.API.Controllers {
             return Ok(_mapper.Map<AuthorDto>(authorFromRepo));
         }
 
+        [HttpPost]
         public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author) {
             Author authorEntity = _mapper.Map<Author>(author);
             _courseLibraryRepository.AddAuthor(authorEntity);
