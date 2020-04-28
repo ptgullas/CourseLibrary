@@ -26,7 +26,6 @@ namespace CourseLibrary.API.Helpers {
                 return Task.CompletedTask;
             }
 
-
             // The value isn't null or whitespace, 
             // and the type of the model is enumerable. 
             // Get the enumerable's type, and a converter 
@@ -47,7 +46,5 @@ namespace CourseLibrary.API.Helpers {
             bindingContext.Result = ModelBindingResult.Success(bindingContext.Model);
             return Task.CompletedTask;
         }
-
-
     }
 }
