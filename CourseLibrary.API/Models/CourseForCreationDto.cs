@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Models {
-    [CourseTitleMustBeDifferentFromDescription]
+    [CourseTitleMustBeDifferentFromDescription(ErrorMessage = "Title must be different from description.")]
     public class CourseForCreationDto /* : IValidatableObject */ {
         [Required(ErrorMessage = "You should fill out a title.")]
         [MaxLength(100, ErrorMessage = "The title shouldn't have more than 100 characters.")]
