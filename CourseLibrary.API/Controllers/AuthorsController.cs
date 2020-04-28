@@ -48,7 +48,9 @@ namespace CourseLibrary.API.Controllers {
             _courseLibraryRepository.AddAuthor(authorEntity);
             _courseLibraryRepository.Save();
             AuthorDto authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
-            return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id}, authorToReturn);
+            return CreatedAtRoute("GetAuthor", 
+                new { authorId = authorToReturn.Id}, 
+                authorToReturn);
         }
 
     }
